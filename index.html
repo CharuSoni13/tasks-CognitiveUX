@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Internship Assignment — Demo Site</title>
+  <meta name="description" content="Three-task vanilla HTML/CSS/JS demo: ICICI 'Exclusive Privileges' replica, YouTube chapter carousel, and a timed lead-capture form." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="./assets/css/global.css" />
+  <style>
+    /* Landing-only styles — small enough to inline rather than create a new file. */
+    .hero {
+      padding: clamp(3rem, 6vw, 6rem) 0 clamp(2rem, 4vw, 4rem);
+      text-align: center;
+    }
+    .hero__eyebrow {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--r-pill);
+      background: var(--c-accent-soft);
+      color: var(--c-brand);
+      font-size: var(--fs-12);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero__title {
+      margin-top: var(--s-4);
+      font-size: clamp(2rem, 1rem + 3.5vw, 3.25rem);
+      color: var(--c-ink);
+    }
+    .hero__title em { color: var(--c-brand); font-style: normal; }
+    .hero__lede { margin: var(--s-4) auto 0; max-width: 60ch; color: var(--c-ink-soft); }
+
+    .task-grid {
+      display: grid; gap: var(--s-6);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      margin-top: var(--s-8);
+    }
+    .task-card {
+      display: flex; flex-direction: column; gap: var(--s-3);
+      padding: var(--s-6);
+      background: var(--c-surface);
+      border: 1px solid var(--c-line);
+      border-radius: var(--r-lg);
+      box-shadow: var(--sh-1);
+      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+      text-align: left;
+    }
+    .task-card:hover { transform: translateY(-4px); box-shadow: var(--sh-3); }
+    .task-card__num {
+      font-size: var(--fs-12); font-weight: 700; letter-spacing: 0.12em;
+      color: var(--c-accent); text-transform: uppercase;
+    }
+    .task-card__title { font-size: var(--fs-20); color: var(--c-brand); }
+    .task-card__desc { color: var(--c-ink-soft); font-size: var(--fs-14); }
+    .task-card__cta {
+      margin-top: auto;
+      display: inline-flex; align-items: center; gap: var(--s-2);
+      color: var(--c-brand); font-weight: 600; font-size: var(--fs-14);
+    }
+    .task-card__cta::after { content: '→'; transition: transform var(--t-fast) var(--ease); }
+    .task-card:hover .task-card__cta::after { transform: translateX(4px); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Primary">
+    <a class="site-nav__brand" href="./index.html">Assignment</a>
+    <ul class="site-nav__links">
+      <li><a class="site-nav__link" href="./index.html" aria-current="page">Home</a></li>
+      <li><a class="site-nav__link" href="./task1.html">Task 1</a></li>
+      <li><a class="site-nav__link" href="./task2.html">Task 2</a></li>
+      <li><a class="site-nav__link" href="./task3.html">Task 3</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+    <header class="container hero">
+      <span class="hero__eyebrow">Internship Assignment</span>
+      <h1 class="hero__title">Three tasks, <em>one site</em>, zero frameworks.</h1>
+      <p class="hero__lede">A vanilla HTML/CSS/JavaScript build covering a pixel-perfect ICICI section replica, a YouTube chapter carousel with auto-generation, and a timed in-video lead-capture form.</p>
+    </header>
+
+    <section class="container section" aria-labelledby="tasks-heading">
+      <h2 id="tasks-heading" class="section__title">Pick a task</h2>
+      <div class="task-grid">
+        <a class="task-card" href="./task1.html">
+          <span class="task-card__num">Task 01</span>
+          <h3 class="task-card__title">Exclusive Privileges replica</h3>
+          <p class="task-card__desc">Pixel-perfect rebuild of the ICICI noFee campaign's card carousel — keyboard, touch, and reduced-motion aware.</p>
+          <span class="task-card__cta">Open task</span>
+        </a>
+        <a class="task-card" href="./task2.html">
+          <span class="task-card__num">Task 02</span>
+          <h3 class="task-card__title">Video chapters + auto-gen</h3>
+          <p class="task-card__desc">Carousel of three YouTube videos with live chapter highlighting, seek-on-click, and a description-parsing chapter generator.</p>
+          <span class="task-card__cta">Open task</span>
+        </a>
+        <a class="task-card" href="./task3.html">
+          <span class="task-card__num">Task 03</span>
+          <h3 class="task-card__title">Timed lead form</h3>
+          <p class="task-card__desc">A non-blocking lead-capture form that surfaces 6 seconds into the video's playback time, with focus trap and Esc-to-dismiss.</p>
+          <span class="task-card__cta">Open task</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="container">Built with HTML, CSS, and Vanilla JS — no frameworks, no UI kits.</div>
+  </footer>
+</body>
+</html>

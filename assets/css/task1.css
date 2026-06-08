@@ -1,0 +1,219 @@
+/* =========================================================================
+   task1.css — "Exclusive Privileges" carousel
+   ========================================================================= */
+
+.privileges {
+  background: var(--c-bg);
+  padding: clamp(2.5rem, 5vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
+}
+.privileges__title {
+  text-align: center;
+  color: var(--c-brand);
+  font-size: clamp(1.5rem, 1rem + 1.8vw, 2.25rem);
+  font-weight: 600;
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
+  position: relative;
+}
+.privileges__title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin: 0.75rem auto 0;
+  background: var(--c-accent);
+  border-radius: var(--r-pill);
+}
+
+/* ---- Carousel layout ---------------------------------------------------- */
+.carousel {
+  position: relative;
+  width: min(960px, 100%);
+  margin-inline: auto;
+  padding-inline: clamp(2.5rem, 8vw, 5rem);
+}
+.carousel__viewport {
+  position: relative;
+  height: 320px;                  /* fixed; cards are absolute-positioned */
+  perspective: 1200px;
+}
+.carousel__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Card --------------------------------------------------------------- */
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(220px, 28vw, 280px);
+  height: 300px;
+  margin-left: calc(clamp(220px, 28vw, 280px) / -2);
+  margin-top: -150px;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  background: var(--c-surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--s-3);
+  transition:
+    transform var(--t-slow) var(--ease),
+    opacity var(--t-slow) var(--ease),
+    box-shadow var(--t-med) var(--ease);
+  will-change: transform, opacity;
+  user-select: none;
+}
+
+/* Position states — JS sets data-pos on each card */
+.card[data-pos="active"] {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  z-index: 3;
+  box-shadow: var(--sh-3);
+}
+.card[data-pos="prev"] {
+  transform: translate3d(-78%, 0, 0) scale(0.82);
+  opacity: 0.45;
+  z-index: 2;
+  filter: saturate(0.85);
+}
+.card[data-pos="next"] {
+  transform: translate3d(78%, 0, 0) scale(0.82);
+  opacity: 0.45;
+  z-index: 2;
+  filter: saturate(0.85);
+}
+.card[data-pos="far-prev"] {
+  transform: translate3d(-110%, 0, 0) scale(0.6);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.card[data-pos="far-next"] {
+  transform: translate3d(110%, 0, 0) scale(0.6);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Disable transitions when JS adds .is-instant (used during loop wrap) */
+.card.is-instant { transition: none !important; }
+
+/* ---- Card content ------------------------------------------------------- */
+.card__media {
+  width: 64px; height: 64px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--c-accent-soft);
+}
+.card__media svg { width: 36px; height: 36px; color: var(--c-accent); }
+
+.card__eyebrow {
+  font-size: var(--fs-12);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-ink-mute);
+}
+.card__title {
+  font-size: var(--fs-20);
+  font-weight: 700;
+  color: var(--c-brand);
+  line-height: 1.25;
+}
+.card__sub {
+  font-size: var(--fs-14);
+  color: var(--c-ink-soft);
+  max-width: 22ch;
+}
+.card__cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-4);
+  border-radius: var(--r-pill);
+  background: var(--c-brand);
+  color: #fff;
+  font-size: var(--fs-12);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+.card[data-pos="active"] .card__cta:hover { background: var(--c-brand-dark); transform: translateY(-1px); }
+.card:not([data-pos="active"]) .card__cta { pointer-events: none; }
+
+/* ---- Arrow buttons ------------------------------------------------------ */
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--c-brand);
+  color: #fff;
+  box-shadow: var(--sh-2);
+  transform: translateY(-50%);
+  transition: background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+  z-index: 4;
+}
+.carousel__btn:hover { background: var(--c-brand-dark); }
+.carousel__btn:active { transform: translateY(-50%) scale(0.94); }
+.carousel__btn:focus-visible { outline: 3px solid var(--c-accent); outline-offset: 3px; }
+.carousel__btn--prev { left: 0; }
+.carousel__btn--next { right: 0; }
+.carousel__btn svg { width: 18px; height: 18px; }
+
+/* ---- Dot indicators ----------------------------------------------------- */
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-2);
+  margin-top: var(--s-6);
+}
+.carousel__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--c-line);
+  transition: background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+.carousel__dot[aria-current="true"] {
+  background: var(--c-brand);
+  transform: scale(1.4);
+}
+.carousel__dot:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 3px; }
+
+/* ---- Live region (visually hidden) -------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Responsive --------------------------------------------------------- */
+@media (max-width: 768px) {
+  .carousel { padding-inline: 3.5rem; }
+  .carousel__viewport { height: 300px; }
+  /* On narrow screens the side cards crowd the active card — hide them entirely */
+  .card[data-pos="prev"],
+  .card[data-pos="next"] {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, 0, 0) scale(0.7);
+  }
+  .carousel__btn { width: 38px; height: 38px; }
+}
+
+@media (max-width: 480px) {
+  .carousel { padding-inline: 2.75rem; }
+  .card { width: min(85vw, 260px); margin-left: calc(min(85vw, 260px) / -2); }
+}

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task 3 — In-video lead form</title>
+  <meta name="description" content="A YouTube video that surfaces a lead-capture form 6 seconds into playback." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.youtube.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="./assets/css/global.css" />
+  <link rel="stylesheet" href="./assets/css/task3.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Primary">
+    <a class="site-nav__brand" href="./index.html">Assignment</a>
+    <ul class="site-nav__links">
+      <li><a class="site-nav__link" href="./index.html">Home</a></li>
+      <li><a class="site-nav__link" href="./task1.html">Task 1</a></li>
+      <li><a class="site-nav__link" href="./task2.html">Task 2</a></li>
+      <li><a class="site-nav__link" href="./task3.html" aria-current="page">Task 3</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="container t2 t3">
+    <header class="t3__intro">
+      <h1>Lead capture, 6 seconds in</h1>
+      <p>Hit play below. Six seconds into the video's playback time, a lead-capture form slides in and the video pauses so the moment feels intentional. Skip with Esc or the Skip button.</p>
+    </header>
+
+    <div class="stage" data-stage data-form-open="false">
+      <div class="stage__player">
+        <!-- The YouTube IFrame API replaces this div with an <iframe>. -->
+        <div id="yt-player"></div>
+      </div>
+
+      <div class="stage__dim" data-stage-dim aria-hidden="true"></div>
+
+      <div class="lead"
+           data-lead
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="lead-title"
+           aria-describedby="lead-sub"
+           aria-hidden="true">
+        <button class="lead__close" type="button" aria-label="Skip and close" data-lead-close>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <span class="lead__eyebrow">Quick question</span>
+        <h2 class="lead__title" id="lead-title">Get the full guide</h2>
+        <p class="lead__sub" id="lead-sub">Drop your details and we'll send you the resources featured in this video.</p>
+
+        <form class="lead__form" data-lead-form novalidate>
+          <div class="lead__row">
+            <label class="lead__label" for="lead-name">Full name</label>
+            <input class="lead__input" id="lead-name" type="text" name="name"
+                   required autocomplete="name" placeholder="Your name" />
+            <span class="lead__error" data-error-for="name"></span>
+          </div>
+          <div class="lead__row">
+            <label class="lead__label" for="lead-email">Email</label>
+            <input class="lead__input" id="lead-email" type="email" name="email"
+                   required autocomplete="email" placeholder="you@example.com" />
+            <span class="lead__error" data-error-for="email"></span>
+          </div>
+          <div class="lead__row">
+            <label class="lead__label" for="lead-phone">Phone</label>
+            <input class="lead__input" id="lead-phone" type="tel" name="phone"
+                   required autocomplete="tel" placeholder="+91 90000 00000" />
+            <span class="lead__error" data-error-for="phone"></span>
+          </div>
+          <div class="lead__row">
+            <label class="lead__label" for="lead-interest">Interest</label>
+            <select class="lead__select" id="lead-interest" name="interest">
+              <option value="general">General enquiry</option>
+              <option value="pricing">Pricing &amp; plans</option>
+              <option value="demo">Book a demo</option>
+              <option value="support">Existing customer support</option>
+            </select>
+          </div>
+          <div class="lead__actions">
+            <button class="lead__btn lead__btn--ghost" type="button" data-lead-skip>Skip</button>
+            <button class="lead__btn lead__btn--primary" type="submit">Send</button>
+          </div>
+        </form>
+
+        <div class="lead__success" data-lead-success hidden>
+          <div class="lead__success-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="lead__success-title">Thanks — we'll be in touch.</p>
+          <p class="lead__success-sub">Your video will resume in a moment.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="t3-controls">
+      <button class="btn" type="button" data-trigger-now>Open form now (debug)</button>
+      <button class="btn btn--ghost" type="button" data-reset>Reset session &amp; submissions</button>
+      <p class="help">The form is shown once per browsing session. Use "Reset" to test the 6-second flow again.</p>
+    </div>
+
+    <section class="subs" aria-label="Captured leads">
+      <h2>Captured leads (this browser)</h2>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Phone</th><th>Interest</th><th>At</th></tr>
+        </thead>
+        <tbody data-subs-body></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="container">Task 3 — vanilla HTML/CSS/JS · 6-second playback trigger, focus trap, localStorage persistence.</div>
+  </footer>
+
+  <script src="./assets/js/task3.js" defer></script>
+</body>
+</html>

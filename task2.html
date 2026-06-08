@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task 2 — Video chapters + auto-gen</title>
+  <meta name="description" content="A YouTube video carousel with dynamic chapter highlighting and a description-parsing chapter generator." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.youtube.com" />
+  <link rel="preconnect" href="https://i.ytimg.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="./assets/css/global.css" />
+  <link rel="stylesheet" href="./assets/css/task2.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Primary">
+    <a class="site-nav__brand" href="./index.html">Assignment</a>
+    <ul class="site-nav__links">
+      <li><a class="site-nav__link" href="./index.html">Home</a></li>
+      <li><a class="site-nav__link" href="./task1.html">Task 1</a></li>
+      <li><a class="site-nav__link" href="./task2.html" aria-current="page">Task 2</a></li>
+      <li><a class="site-nav__link" href="./task3.html">Task 3</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="container t2">
+    <header class="t2__intro">
+      <h1>Video chapters &amp; auto-generator</h1>
+      <p>Three YouTube videos in a carousel. Whichever video is playing, the chapter list updates and stays synced with the current playback time — click any chapter to jump there.</p>
+    </header>
+
+    <section class="player-layout" aria-label="Video player and chapters">
+
+      <div class="player">
+        <div class="player__frame">
+          <!-- The YouTube IFrame API replaces this div with an <iframe>. -->
+          <div id="yt-player"></div>
+        </div>
+
+        <div class="player__meta">
+          <span class="player__meta-title" data-player-title></span>
+          <span class="player__meta-id" data-player-id></span>
+        </div>
+
+        <div class="thumbs" aria-label="Switch video">
+          <button class="thumbs__nav" type="button" aria-label="Previous video" data-thumbs-prev>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="thumbs__list" data-thumbs-list></div>
+          <button class="thumbs__nav" type="button" aria-label="Next video" data-thumbs-next>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <aside class="chapters" aria-label="Chapters">
+        <div class="chapters__head">
+          <h2 class="chapters__title">Chapters</h2>
+          <span class="chapters__count" data-chapters-count></span>
+        </div>
+        <ul class="chapters__list" data-chapters-list></ul>
+      </aside>
+
+    </section>
+
+    <section class="generator" aria-labelledby="gen-title">
+      <header class="generator__head">
+        <h2 id="gen-title">Auto-chapter generator</h2>
+        <p>Paste a YouTube URL and your <strong>YouTube Data API v3</strong> key. The generator pulls the video's description, extracts timestamp lines such as <code>0:00 Intro</code>, and falls back to an even split based on duration when no chapters are present.</p>
+      </header>
+
+      <form class="generator__form" data-gen-form novalidate>
+        <div class="input-group">
+          <label class="input-group__label" for="gen-url">YouTube URL</label>
+          <input id="gen-url" class="input" type="url" required
+                 placeholder="https://www.youtube.com/watch?v=…"
+                 data-gen-url />
+        </div>
+        <div class="input-group">
+          <label class="input-group__label" for="gen-key">API key</label>
+          <input id="gen-key" class="input" type="password" autocomplete="off"
+                 placeholder="Paste your API key"
+                 data-gen-key />
+        </div>
+        <div class="input-group" aria-hidden="true">
+          <span class="input-group__label">&nbsp;</span>
+          <button class="btn" type="submit">Generate chapters</button>
+        </div>
+      </form>
+
+      <p class="api-hint">
+        Need a key? Create one in the
+        <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener noreferrer">Google Cloud console</a>
+        and enable the <em>YouTube Data API v3</em>. The key stays in your browser — it is never stored.
+      </p>
+
+      <div class="generator__status" data-gen-status></div>
+
+      <div class="generator__results" data-gen-results>
+        <div class="generator__grid">
+          <div>
+            <h3 style="color:var(--c-brand);font-size:var(--fs-16);margin-bottom:var(--s-3);">Detected chapters</h3>
+            <ul class="gen-list" data-gen-list></ul>
+            <div style="margin-top:var(--s-4);">
+              <button class="btn btn--ghost" type="button" data-gen-use>Use in player above</button>
+            </div>
+          </div>
+          <div>
+            <h3 style="color:var(--c-brand);font-size:var(--fs-16);margin-bottom:var(--s-3);">Generated code</h3>
+            <pre class="gen-code"><button class="gen-code__copy" type="button" data-gen-copy>Copy</button><code data-gen-code></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="container">Task 2 — vanilla HTML/CSS/JS · YouTube IFrame API + Data API v3.</div>
+  </footer>
+
+  <script src="./assets/js/task2.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+:root {
+  --c-bg: #f5ebe0;
+  --c-bg-soft: #faf3ea;
+  --c-surface: #ffffff;
+  --c-ink: #1a1a1a;
+  --c-ink-soft: #4a4a4a;
+  --c-ink-mute: #7a7a7a;
+  --c-brand: #7a1f24;          /* deep maroon — section titles, CTAs */
+  --c-brand-dark: #5a161a;
+  --c-accent: #f47b20;         /* orange — secondary highlights */
+  --c-accent-soft: #fde8d3;
+  --c-line: #e6dccc;
+  --c-success: #1f7a4a;
+  --c-danger:  #c62828;
+
+  /* Type scale */
+  --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-24: 1.5rem;
+  --fs-32: 2rem;
+  --fs-40: 2.5rem;
+
+  /* Spacing scale (4px base) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+
+  /* Radii + shadow */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-pill: 999px;
+  --sh-1: 0 1px 2px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
+  --sh-2: 0 4px 10px rgba(0,0,0,0.06), 0 10px 24px rgba(0,0,0,0.08);
+  --sh-3: 0 12px 32px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-fast: 180ms;
+  --t-med: 320ms;
+  --t-slow: 520ms;
+
+  /* Breakpoints (used in @media queries; declared for documentation) */
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-16);
+  line-height: 1.55;
+  color: var(--c-ink);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg, video { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: var(--c-brand); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.2; font-weight: 600; }
+p { margin: 0; }
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--c-brand); color: #fff; padding: var(--s-2) var(--s-4);
+  border-radius: 0 0 var(--r-sm) 0; z-index: 1000;
+}
+.skip-link:focus { left: 0; }
+
+/* ---- Site nav ---- */
+.site-nav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--s-4) var(--s-6);
+  background: rgba(245, 235, 224, 0.92);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--c-line);
+}
+.site-nav__brand {
+  font-weight: 700; font-size: var(--fs-18); color: var(--c-brand);
+  letter-spacing: 0.02em;
+}
+.site-nav__links {
+  display: flex; gap: var(--s-2); list-style: none; margin: 0; padding: 0;
+}
+.site-nav__link {
+  display: inline-block; padding: var(--s-2) var(--s-4);
+  border-radius: var(--r-pill);
+  color: var(--c-ink-soft); font-size: var(--fs-14); font-weight: 500;
+  transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.site-nav__link:hover { background: var(--c-accent-soft); color: var(--c-brand); text-decoration: none; }
+.site-nav__link[aria-current="page"] { background: var(--c-brand); color: #fff; }
+
+/* ---- Container + section ---- */
+.container { width: min(1120px, 92vw); margin-inline: auto; }
+.section { padding-block: var(--s-12); }
+.section__head { text-align: center; margin-bottom: var(--s-8); }
+.section__title {
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  color: var(--c-brand);
+  letter-spacing: 0.01em;
+}
+.section__sub { color: var(--c-ink-soft); margin-top: var(--s-2); }
+
+/* ---- Footer ---- */
+.site-foot {
+  margin-top: var(--s-12);
+  padding: var(--s-6) var(--s-6) var(--s-8);
+  border-top: 1px solid var(--c-line);
+  color: var(--c-ink-mute);
+  text-align: center;
+  font-size: var(--fs-14);
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

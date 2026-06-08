@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task 1 — Exclusive Privileges</title>
+  <meta name="description" content="Pixel-perfect replica of the ICICI noFee 'Exclusive Privileges' carousel section." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="./assets/css/global.css" />
+  <link rel="stylesheet" href="./assets/css/task1.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Primary">
+    <a class="site-nav__brand" href="./index.html">Assignment</a>
+    <ul class="site-nav__links">
+      <li><a class="site-nav__link" href="./index.html">Home</a></li>
+      <li><a class="site-nav__link" href="./task1.html" aria-current="page">Task 1</a></li>
+      <li><a class="site-nav__link" href="./task2.html">Task 2</a></li>
+      <li><a class="site-nav__link" href="./task3.html">Task 3</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+    <section class="privileges" aria-labelledby="privileges-title">
+      <h1 class="privileges__title" id="privileges-title">Exclusive Privileges</h1>
+
+      <div class="carousel"
+           data-carousel
+           role="region"
+           aria-roledescription="carousel"
+           aria-label="Exclusive privileges">
+
+        <button class="carousel__btn carousel__btn--prev"
+                type="button"
+                aria-label="Previous privilege"
+                data-carousel-prev>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="carousel__viewport">
+          <div class="carousel__track" data-carousel-track>
+
+            <article class="card" aria-roledescription="slide" aria-label="1 of 5">
+              <div class="card__media" aria-hidden="true">
+                <!-- Gift / benefit icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 12v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M2 7h20v5H2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M12 22V7" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M12 7s-2-5-5-5a3 3 0 0 0 0 6h5zM12 7s2-5 5-5a3 3 0 0 1 0 6h-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="card__eyebrow">Enjoy Benefits</span>
+              <h2 class="card__title">Up to ₹500 off</h2>
+              <p class="card__sub">on your card joining and renewal fees, every year.</p>
+              <a class="card__cta" href="#">Know more</a>
+            </article>
+
+            <article class="card" aria-roledescription="slide" aria-label="2 of 5">
+              <div class="card__media" aria-hidden="true">
+                <!-- Apple silhouette -->
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.5 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.4 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8 2.2-1.2 3-2.3c.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.4-.9-2.4-3.6zM15.4 5.4c.7-.8 1.1-1.9 1-3-1 .1-2.2.7-2.9 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.2-.6 2.9-1.4z"/>
+                </svg>
+              </div>
+              <span class="card__eyebrow">Avail</span>
+              <h2 class="card__title">Apple Offer</h2>
+              <p class="card__sub">with up to <strong>₹7,000/-</strong> off on Apple products.</p>
+              <a class="card__cta" href="#">Avail offer</a>
+            </article>
+
+            <article class="card" aria-roledescription="slide" aria-label="3 of 5">
+              <div class="card__media" aria-hidden="true">
+                <!-- Voucher / ticket icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M14 5v14" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2 2"/>
+                </svg>
+              </div>
+              <span class="card__eyebrow">Get</span>
+              <h2 class="card__title">Activation Voucher</h2>
+              <p class="card__sub">worth flat <strong>₹1,250</strong> on first card swipe.</p>
+              <a class="card__cta" href="#">Claim now</a>
+            </article>
+
+            <article class="card" aria-roledescription="slide" aria-label="4 of 5">
+              <div class="card__media" aria-hidden="true">
+                <!-- Plane / travel icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M10.5 13.5L3 11l1-2 8 1 4-4a2 2 0 1 1 2.8 2.8l-4 4 1 8-2 1-2.5-7.5-2.8 2.8L8 19l-1.5.5-.5-2-2-.5L4.5 15.5l1.7-.3 2.8-2.8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="card__eyebrow">Travel Perks</span>
+              <h2 class="card__title">Lounge Access</h2>
+              <p class="card__sub">Complimentary domestic airport lounge access, twice a year.</p>
+              <a class="card__cta" href="#">Discover</a>
+            </article>
+
+            <article class="card" aria-roledescription="slide" aria-label="5 of 5">
+              <div class="card__media" aria-hidden="true">
+                <!-- Dining / cutlery icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 2v9a2 2 0 1 1-4 0V2M5 11v11M17 2c-2 0-3 2-3 5s1 5 3 5v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="card__eyebrow">Dining</span>
+              <h2 class="card__title">15% Savings</h2>
+              <p class="card__sub">on dining at over 2,500 partner restaurants across India.</p>
+              <a class="card__cta" href="#">View list</a>
+            </article>
+
+          </div>
+        </div>
+
+        <button class="carousel__btn carousel__btn--next"
+                type="button"
+                aria-label="Next privilege"
+                data-carousel-next>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="carousel__dots" role="tablist" aria-label="Slide selectors" data-carousel-dots></div>
+        <p class="sr-only" aria-live="polite" data-carousel-live></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="container">Task 1 — vanilla HTML/CSS/JS · auto-advance, swipe, keyboard, and reduced-motion aware.</div>
+  </footer>
+
+  <script src="./assets/js/task1.js" defer></script>
+</body>
+</html>
